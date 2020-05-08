@@ -11,9 +11,11 @@
 
 <script type="text/javascript">
     var oktaDomain = '<%= System.Configuration.ConfigurationManager.AppSettings["okta:oktaDomain"].ToString() %>';
+    var token = '<%= Request.QueryString["stateToken"] %>';
 
     var signIn = new OktaSignIn({
-        baseUrl: oktaDomain
+        baseUrl: oktaDomain,
+        stateToken: token
     });
 
     signIn.renderEl({ el: '#widget' }, (res) => {
